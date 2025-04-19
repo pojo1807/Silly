@@ -41,6 +41,10 @@ python Bot.py --debug
 
 # Images
 Some visuals for the bot:
+
+**Console:**
+![console](https://cdn.discordapp.com/attachments/1124562179635556362/1363131303045632184/image.png?ex=6804ea74&is=680398f4&hm=0ba899edbfbc6683c4bb5e3ec595f0f5f07eba8826395951357a170ec38b61d0&)
+
 **Help command:**
 ![help](https://cdn.discordapp.com/attachments/1124562179635556362/1363125190136955110/B475DFE4-39A4-4319-A323-6F93C0915A0E.png?ex=6804e4c2&is=68039342&hm=1881caa158ee82f842ccff14bf4bc00314993c0644d6056bf3523879b5baced9&)
 
