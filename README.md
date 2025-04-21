@@ -15,7 +15,7 @@ It’s a simple, fun project I use for myself. If more people get interested, I 
 ![Silly Cat](https://i.pinimg.com/736x/ac/92/78/ac9278a599b1ba47fa978c3cfa519e10.jpg)
 
 ## Change Logs
-You can see the change logs of this projecy by pressing this: [VIEW CHANGE LOGS](CHANGELOG.md)
+[CLICK ME TO VIEW!](CHANGELOG.md)
 
 ## Installation
 
