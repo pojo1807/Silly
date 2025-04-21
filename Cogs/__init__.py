@@ -1,7 +1,6 @@
 from discord.ext import commands
 from discord import app_commands
 from typing import List, Dict, Any, Callable, Type, Optional, Union
-import re
 import logging
 import asyncio
 
