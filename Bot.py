@@ -265,8 +265,8 @@ I am here to help you with your **_silly_ needs**.
   |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
   
   
-Made with [bright_red]<3[/] by [royal_blue1]fat0426[/]
-[gray35]https://github.com/duckfatscooby
+Made with [bright_red]<3[/] by [royal_blue1]fat0426[/] on [cornflower_blue]Discord[/]
+[gray35]https://github.com/pojo1807
 Python     v{platform.python_version()}
 Discord.py v{discord.__version__}[/]""", highlight=False)
         
