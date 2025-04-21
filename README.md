@@ -3,7 +3,7 @@
     <img src="https://cdn.discordapp.com/attachments/1124562179635556362/1363873335259304086/7641CCE7-99EB-40EB-A3E7-80A48F0C50ED.png?ex=68079d86&is=68064c06&hm=78160e4164d06a979e9fbe7b7baa31a37a5d718395602151d319f83a818ec201&" alt="Silly Bot Logo">
 <h1>Version 0.0.2, Not Released Yet.</h1>
 <p><i>I will dedicate my time to upgrade and develop this bot until I find new inspiration. It could be daily, weekly, or monthly!</i></p>
-[VIEW CHANGE LOGS](/CHANGELOG.md)
+[VIEW CHANGE LOGS](CHANGELOG.md)
 </div>
 
 
