@@ -1,7 +1,7 @@
 <div align="center">
     <h1>🐱 Silly Bot 🤖</h1>
     <img width="200" src="https://cdn.discordapp.com/attachments/1124562179635556362/1363873335259304086/7641CCE7-99EB-40EB-A3E7-80A48F0C50ED.png?ex=68079d86&is=68064c06&hm=78160e4164d06a979e9fbe7b7baa31a37a5d718395602151d319f83a818ec201&" alt="Silly Bot Logo">
-    <h2>Version 0.0.2 | Coming Soon™</h2>
+    <h2>Version 0.0.6 | Coming Soon™</h2>
     <p><em>A labor of love updated whenever inspiration strikes - be it daily, weekly, or monthly! 💝</em></p>
 </div>
 
@@ -59,10 +59,10 @@ Silly Bot is a personal project created for fun and entertainment. Use responsib
 
 ## 📋 TODO List
 ### Coming Soon:
-- [ ] Expand command library beyond `ban` and `help`
+- [x] Expand command library beyond `ban` and `help` (Added meow, howlove, debug commands)
 - [ ] Focus on cat-centric content (with occasional adorable dogs!)
-- [ ] Code optimization and cleanup
-- [ ] Slash command implementation for `help`
+- [x] Code optimization and cleanup (Improved code organization and structure)
+- [x] Slash command implementation for `help` (Fully implemented with autocomplete)
 - [ ] Implement `CImages` class for better media management
 
 <div align="center">
