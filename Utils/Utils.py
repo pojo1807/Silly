@@ -13,7 +13,7 @@ def setup_rich_logging(level=logging.INFO, debug : bool = False, LOG_FILENAME="S
         Args:
             level (_type_, optional): The logging level. Defaults to `logging.INFO`.
             debug (bool, optional): If True, set the logging level to `logging.DEBUG`. Defaults to False.
-            LOG_FILENAME (str, optional): The file name of log file, you can change it by changing the `LOG_FILENAME` in Bot.py. Defaults to "Silly.log".
+            LOG_FILENAME (str, optional): The file name of log file. Defaults to "Silly.log".
         """
         handler = RichHandler(rich_tracebacks=True,
                             keywords=["EXECUTE","BOT MISSING PERMISSIONS", "MISSING PERMISSIONS",

@@ -6,30 +6,7 @@ import asyncio
 
 logger = logging.getLogger(__name__)
 
-class BetterCommand:
-    """A decorator class that creates both prefix and slash commands with enhanced features.
-    
-    This class provides a unified way to create commands that work with both prefix and slash commands.
-    It handles command attributes, descriptions, and parameter descriptions automatically.
-    
-    Attributes:
-        name (Optional[str]): The name of the command. If None, the function name will be used.
-        aliases (Optional[List[str]]): Alternative names for the command.
-        description (Optional[str]): A brief description of what the command does.
-        brief (Optional[str]): A short description of the command.
-        help (Optional[str]): A detailed help message for the command.
-        usage (Optional[str]): Usage examples for the command.
-        hidden (bool): Whether the command should be hidden from help.
-        enabled (bool): Whether the command is enabled.
-        ignore_extra (bool): Whether to ignore extra arguments.
-        extras (Optional[Dict[Any, Any]]): Additional command attributes.
-        rest_is_raw (bool): Whether to pass the rest of the arguments as raw.
-        cooldown_after_parsing (bool): Whether to apply cooldown after parsing.
-        cls (Optional[Type[commands.Command]]): Custom command class to use.
-        debrise (Optional[str]): Additional brief description.
-        describe (Optional[Dict[str, str]]): Parameter descriptions for slash commands.
-    """
-    
+class BetterCommand:    
     def __init__(
         self,
         name: Optional[str] = None,
@@ -46,7 +23,8 @@ class BetterCommand:
         cooldown_after_parsing: bool = False,
         cls: Optional[Type[commands.Command]] = None,
         debrise: Optional[str] = None,
-        describe: Optional[Dict[str, str]] = None 
+        describe: Optional[Dict[str, str]] = None,
+        
     ) -> None:
         """Initialize a BetterCommand instance.
         
@@ -120,7 +98,7 @@ class BetterCommand:
             raise
 
 
-def HelpFormat(Command: str, Required: List[str], Optional: Optional[List[str]] = None) -> str:
+def HelpFormat(Command: str, Required: List[str] = [], Optional: Optional[List[str]] = None) -> str:
     """Format command usage help with ANSI colors.
     
     Args:

@@ -1,6 +1,9 @@
+from typing import List
 import discord
 from discord.ext import commands
 from discord.embeds import Embed
+from discord.utils import MISSING
+from discord import app_commands
 
 from datetime import datetime
 
@@ -20,19 +23,40 @@ class Moderation(commands.Cog):
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Ban ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
     @BetterCommand(
         name="ban",
-        description="""**Bans** a member from the house and don't let _he/she_ comeback.""",
-        brief="**Bans** a member from the house",
+        description="""Bans a member from the house and don't let he/she comeback.""",
+        brief="**Bans** a member from **the house**.",
         help=
-f"""# {Emojis.SecurityCat} ・ Ban Command
-**Bans a member from the house and don't let _he/she_ comeback.**
-""",
+f"""Meowww! {Emojis.SecurityCat} Time to put on my serious face! (｀^´)
+
+As the house's security kitty, I take my job of keeping our cozy home safe very seriously! *adjusts tiny security badge*
+
+When someone's being a real troublemaker and you need my help:
+- I'll give them the ultimate time-out - a **ban** from our server! {Emojis.CatScare}
+- They won't be able to sneak back in either (unless you decide to forgive them later~)
+
+Just remember my little rules, okay? {Emojis.JustWokeUp}
+- You need special `Ban Members` powers to ask for my help
+- I can't ban anyone stronger than you (even cats have limits!)
+- Let's use this carefully! We want to protect our home, not make it scary {Emojis.NerdCat}
+
+*purrrr... Just tell me who's been naughty and I'll take care of the rest! ฅ^•ﻌ•^ฅ*""",
         usage=f"""
 This is how you can use it to **ban**:
-{HelpFormat(f"{PREFIX}ban", ["member"], ["reason"])}""",
+{HelpFormat(f"{PREFIX}ban", ["member"], ["reason", "delete_messages_days"])}""",
     )
     @commands.has_permissions(ban_members=True)
+    @app_commands.choices(
+        delete_messages_days=[
+            app_commands.Choice(name="Don't delete any messages", value=0),
+            app_commands.Choice(name="Delete messages from last 24 hours", value=1), 
+            app_commands.Choice(name="Delete messages from last 2 days", value=2),
+            app_commands.Choice(name="Delete messages from last 3 days", value=3),
+            app_commands.Choice(name="Delete messages from last 5 days", value=5),
+            app_commands.Choice(name="Delete messages from last week", value=7)
+        ]
+    )
     
-    async def ban(self, ctx: commands.Context, member: discord.Member, *, reason: str = None):
+    async def ban(self, ctx: commands.Context, member: discord.Member, *, reason: str = None, delete_messages_days: int = 0):
         """Bans a member from the server.
         This command requires the `ban_members` permission.
 
@@ -40,6 +64,7 @@ This is how you can use it to **ban**:
             ctx (commands.Context): Context of the command.
             member (discord.Member): The hooman you want to BAN. (muhehehehehehe)
             reason (str, optional): Why you want to ban this silly one?
+            delete_messages_days (int, optional): How many days of messages to delete. (Default: Don't delete any messages)
         """
         
         embed = Embed(
@@ -135,9 +160,7 @@ Easy! You can use me to **unban** this hooman.
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/1312448853450162176/1312448878414397603/IMG_7880.gif?ex=68047204&is=68032084&hm=b46ba243a8cf030d8c222c0370ed9aa8e097f4544cbc64b102ccd8a281a13602&")
         embed.set_image(url="https://cdn.discordapp.com/attachments/1218440992651218959/1255879183931019294/image_2024-06-27_213452161.gif?ex=6804f822&is=6803a6a2&hm=3d6faf4c46d121831e594e0430c61ac45318df514998ef42a5b673644b475384&")
         await ctx.send(embed=embed)
-        await member.ban(reason=reason)
-        
-        
+        await member.ban(reason=reason, delete_message_days=delete_messages_days)
 
 
 

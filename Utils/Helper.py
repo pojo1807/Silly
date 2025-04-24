@@ -1,10 +1,13 @@
 import inspect
+import logging
 from typing import Any, List
 
 from discord.ext import commands
 from configparser import ConfigParser
 from discord import Emoji
 import random as rd
+
+logger = logging.getLogger("Silly")
 
 class Emojis_Class:
     """Class to manage all emojis."""
@@ -31,6 +34,12 @@ class Emojis_Class:
         """Get a random cat emoji."""
         if not self._cats:
             return ""
+        if many > 1:
+            text = ""
+            for _ in range(many):
+                emoji = rd.choice(self._cats)
+                text += f"<{emoji.animated and 'a' or ''}:{emoji.name}:{emoji.id}>{" " if many > 1 else ""} "
+            return text
         emoji = rd.choice(self._cats)
         return f"<{emoji.animated and 'a' or ''}:{emoji.name}:{emoji.id}>{" " if many > 1 else ""}" * many
     
@@ -60,7 +69,7 @@ def get_required_permissions(command: commands.Command) -> List[str]:
     required_permissions = []
 
     for check in command.checks:
-        # Nếu là decorator kiểu @commands.has_permissions
+        # if it's a decorator like @commands.has_permissions
         if hasattr(check, "__name__") and check.__name__ == "predicate":
             try:
                 closure_vars = inspect.getclosurevars(check)
@@ -68,8 +77,7 @@ def get_required_permissions(command: commands.Command) -> List[str]:
                 if isinstance(perms, dict):
                     required_permissions.extend([perm for perm, value in perms.items() if value])
             except Exception as e:
-                # Bạn có thể log nếu muốn
-                pass  # hoặc self.Logger.warning(...)
+                logger.warning(f"Error getting required permissions for command {command.name}: {e}")
     
     return required_permissions
 

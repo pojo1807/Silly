@@ -1,15 +1,20 @@
 from discord.ext import commands
 import discord
-from discord import app_commands
-from Utils.Globals import PREFIX
+from Cogs.__init__ import BetterCommand, HelpFormat
+
+
 from Utils.Helper import Emojis
+from Utils.Globals import PREFIX
 
 import datetime
 import re
 import logging
-
+import psutil
+import random as rd
+import asyncio
 class General(commands.Cog):
     bot: commands.Bot
+    Emoji = Emojis.Guh
 
     def __init__(self, bot):
         self.bot = bot
@@ -180,5 +185,136 @@ I just got an **error** and I don't even *meow* what **actually it is**...
                                 f'- [red]UNKNOWN ERROR[/] in [bold underline link=https://discordapp.com/channels/{ctx.message.guild.id}/{ctx.channel.id}/{ctx.message.id}]#{ctx.channel.name}[/bold underline link]: '
                                 f'[grey50]{PREFIX}{ctx.invoked_with}[/grey50]\n[bright_red]{e}[/]')
 
+
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
+    #                                               >meow                                              #
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
+    # --------------------------------------- btw, this is ping -------------------------------------- #
+    @BetterCommand(
+        name="meow",
+        description="Meow meo meow, MEOW, meow meow meo meo meo..w",
+        brief="Meow meow meow",
+        help="""Meow meo meow meow, meow meow meow. Meow meow meow **meow meow**.
+Meow meow meo meo meo meow *meow*, meow meow meow meo?
+Meow meow meo meo meo meo meow! <3""",
+        usage=f"**Just use** `{PREFIX}meow` to  *meow meow meow*.",
+        aliases=["meowmeowmeow"],
+    )
+    async def meow(self, ctx: commands.Context):
+        embed = discord.Embed(
+            description=f"""# {self.Emojis.random()} Meow meow meow meow meow meow
+# {self.Emojis.random(10)} 
+Meow meow meow meow! Meo meo meo mèo meow~ 
+*Meooooow* meow meow **meo meo**! *Meow meow* meo mèo meo.
+Meo meo meow meow meow? **MEOW MEOW**! Meo meo mèo...
+Meow meow meo meo meow meow! Meo meo mèo meow meow~""",
+            color=discord.Color.green()
+        )
+        embed.url = "https://online.fliphtml5.com/foaxv/zvfb/#isOldNeat"
+        embed.add_field(name="Latency", value=f"`{self.bot.latency * 1000:.2f}ms`", inline=True)
+        embed.add_field(name="RAM Usage", value=f"`{psutil.Process().memory_info().rss / 1024 / 1024:.2f}MB`", inline=True)
+        embed.set_thumbnail(url=ctx.author.avatar.url if ctx.author.avatar else "https://cdn.discordapp.com/attachments/1258599258345443441/1264950931032637520/uDpr09A.gif?ex=680af21b&is=6809a09b&hm=18dd712186bed4d9c9831ab46c9a04a6ebec8844669e5f07a9d852b8d363136d&")
+        embed.set_image(url="https://preview.redd.it/uzyft60tser11.jpg?width=1080&crop=smart&auto=webp&s=7a6a169625dff3efba42c8643e5576ed38c9bcf3")
+
+        await ctx.send(embed=embed)
+
+
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
+    #                                              >random                                             #
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
+    @BetterCommand(
+        name="howlove",
+        description="Check how much some one love silly cats is",
+        brief="Check how much some one love silly cats",
+        help="""How much you love **silly _cats_**?
+**I will calculate it for you!**
+""",
+        usage=f"""Well well well, you can use it like this:
+{HelpFormat(f"{PREFIX}howlove", Optional=["member"])}
+-# You can use it without any argument to check how much you love silly cats.""",
+    )
+    async def howlove(self, ctx: commands.Context,*, member: discord.Member = None, ephemeral: bool = False):
+        """
+        Calculate how much a member loves cats.
+        
+        Args:
+            ctx (commands.Context): The context of the command.
+            member (discord.Member, optional): The member to calculate the love for. Defaults to the author.
+            ephemeral (bool, optional): Please send me secretly (only me can see it). (Default: False, Optional)
+        """
+        if member is None:
+            member = ctx.author
+        
+        if member == ctx.guild.me:
+            embed = discord.Embed(
+                description=f"""# {self.Emojis.random()} Meow meow meo...
+## You don't need to check me, I'm already a cat lover!
+-# I love cats so much! <3""",
+                color=discord.Color.red()
+            )
+            embed.set_footer(text=f"Meow meow meo~, I love you more than you know!")
+            embed.set_thumbnail(url=member.avatar.url if member.avatar else "https://c.tenor.com/62O0lwQIiwwAAAAd/tenor.gif")
+            embed.set_image(url="https://cdn.discordapp.com/attachments/1252365615281340498/1305546137427640320/togif.gif?ex=680af957&is=6809a7d7&hm=b9b078b340a3da54037c0c715505a092d6b6dd9eadd7d907018f1f693e9263b3&")
+            await ctx.send(embed=embed, ephemeral=ephemeral)
+            return
+        
+        embed = discord.Embed(
+            title=f"",
+            description=f"""# {self.Emojis.random()} Calculating Love for Silly Cats
+## Let me check how much **{member.display_name}** loves cats...""",
+            color=discord.Color.red()
+        )
+        embed.set_footer(text=f"Well well well, I'm not sure if this is correct, but I'll try my best!")
+        embed.set_thumbnail(url=member.avatar.url if member.avatar else "https://c.tenor.com/62O0lwQIiwwAAAAd/tenor.gif")
+        embed.set_image(url="https://cdn.discordapp.com/attachments/1252365615281340498/1305546137427640320/togif.gif?ex=680af957&is=6809a7d7&hm=b9b078b340a3da54037c0c715505a092d6b6dd9eadd7d907018f1f693e9263b3&")
+        msg = await ctx.send(embed=embed, ephemeral=ephemeral)
+        
+        steps = [
+            self.Emojis.random() + "** Analyzing cat photos in gallery...**",
+            self.Emojis.random() + "** Checking kitty treat purchases...**", 
+            self.Emojis.random() + "** Scanning for cat videos watched...**",
+            self.Emojis.random() + "** Measuring heart rate near cats...**"
+        ]
+        
+        for step in steps:
+            await asyncio.sleep(rd.randint(1, 4))
+            embed.description = f"""# {self.Emojis.random()} Calculating Love for Silly Cats      
+## {step}"""
+            await msg.edit(embed=embed)
+        
+        await asyncio.sleep(2)
+        love_percent = rd.randint(0, 100)
+        
+        # Determine love level and message
+        if love_percent >= 80:
+            level = "Ultimate Cat Lover! 😻"
+            color = discord.Color.red()
+        elif love_percent >= 60:
+            level = "Cat Enthusiast! 😺"
+            color = discord.Color.blue() 
+        elif love_percent >= 40:
+            level = "Cat Friend 🐱"
+            color = discord.Color.green()
+        else:
+            level = "Still Learning to Love Cats 😿"
+            color = discord.Color.dark_gray()
+            
+        hearts = '❤️' * (love_percent // 10)
+        empty_hearts = '🖤' * ((100 - love_percent) // 10)
+        
+        embed.color = color
+        embed.description = f"""# {self.Emojis.random()} Love Calculator Results
+### {level}
+
+**{member.name}**'s Love for Cats: **{love_percent}%**
+{hearts}{empty_hearts}
+
+-# *The more you love cats, the more they love you back!* {self.Emojis.random()}"""
+        
+        await msg.edit(embed=embed)
+    
+
+
+        
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(General(bot))
