@@ -76,6 +76,7 @@ Welcome to **Silly's** help menu! I'm here to assist you with all your **_silly_
             def __init__(self, help_cog):
                 super().__init__(timeout=300)  # 5min
                 self.help_cog = help_cog
+                self.message: discord.Message = None
 
                 self.add_item(
                     Button(
@@ -163,7 +164,10 @@ Welcome to **Silly's** help menu! I'm here to assist you with all your **_silly_
         embed.set_footer(text="Thanks for using Silly! ❤️")
         # logger.debug(f"embed: {embed}")
         # logger.debug(f"ephemeral: {ephemeral}")
-        await self.smart_send(ctx, embed=embed, view=view, ephemeral=ephemeral)
+        message = await self.smart_send(
+            ctx, embed=embed, view=view, ephemeral=ephemeral
+        )
+        view.message = message
 
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
     #                                          >help COMMAND                                           #
