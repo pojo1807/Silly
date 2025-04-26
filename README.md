@@ -1,14 +1,14 @@
 <div align="center">
     <h1>Silly Bot</h1>
     <img width="200" src="https://c.tenor.com/62O0lwQIiwwAAAAd/tenor.gif" alt="Silly Bot Logo">
-    <h2>Version 0.0.6 | Coming Soon™</h2>
+    <h2>Version 0.0.8 | Coming Soon™</h2>
     <p><em>A labor of love updated whenever inspiration strikes - be it daily, weekly, or monthly! 💝</em></p>
 </div>
 
 <div align="center">
     
 [![Discord](https://img.shields.io/badge/Discord-fat0426-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/users/774142265248710678/profile)
-[![Version](https://img.shields.io/badge/version-0.0.6-blue?style=for-the-badge)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.0.8-blue?style=for-the-badge)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-In_Development-yellow?style=for-the-badge)]()
     
 </div>
