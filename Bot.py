@@ -18,6 +18,7 @@ from Utils.Utils import *
 COMMAND_NAMES = [ # i change from auto get to this because i want to change the order of the categories
     "General",
     "Moderation",
+    "Fun",
     "Utilities",
     #... i will add more here later ;)
 ]
@@ -58,7 +59,6 @@ class Silly(commands.Bot):
 
     
     def __init__(self) -> None:
-        # Init console n Logger
         self.Console = Console()
         
         self.Logger = logging.getLogger("silly")
@@ -114,7 +114,7 @@ Discord.py v{discord.__version__}[/]""", highlight=False)
         """
         self.Logger.info("Silly is ready!")
         self.Logger.info(
-f"Logged in as \"{self.user.name}#{self.user.discriminator}\" [gray35]({self.user.id})[/gray35]\nInvite via [blink]https://discord.com/oauth2/authorize?client_id={self.user.id}&permissions=8&integration_type=0&scope=bot[/blink]"
+f"Logged in as \"{self.user.name}#{self.user.discriminator}\" [gray35]({self.user.id})[/gray35]"
         )
         # Set status
         await self.change_presence(activity=discord.Game(name="with my hooman")) # static for now

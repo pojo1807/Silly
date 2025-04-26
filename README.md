@@ -1,14 +1,14 @@
 <div align="center">
-    <h1>🐱 Silly Bot 🤖</h1>
-    <img width="200" src="https://cdn.discordapp.com/attachments/1124562179635556362/1363873335259304086/7641CCE7-99EB-40EB-A3E7-80A48F0C50ED.png?ex=68079d86&is=68064c06&hm=78160e4164d06a979e9fbe7b7baa31a37a5d718395602151d319f83a818ec201&" alt="Silly Bot Logo">
+    <h1>Silly Bot</h1>
+    <img width="200" src="https://c.tenor.com/62O0lwQIiwwAAAAd/tenor.gif" alt="Silly Bot Logo">
     <h2>Version 0.0.6 | Coming Soon™</h2>
     <p><em>A labor of love updated whenever inspiration strikes - be it daily, weekly, or monthly! 💝</em></p>
 </div>
 
 <div align="center">
     
-[![Discord](https://img.shields.io/badge/Discord-fat0426-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com)
-[![Version](https://img.shields.io/badge/version-0.0.2-blue?style=for-the-badge)](CHANGELOG.md)
+[![Discord](https://img.shields.io/badge/Discord-fat0426-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/users/774142265248710678/profile)
+[![Version](https://img.shields.io/badge/version-0.0.6-blue?style=for-the-badge)](CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-In_Development-yellow?style=for-the-badge)]()
     
 </div>
@@ -28,19 +28,6 @@ This project found its home on GitHub not just because I needed hosting, but bec
 
 While Silly Bot is primarily my personal playground for coding fun and challenges, I've included the `_Emojis` folder to make installation smoother for anyone interested in trying it out. The more the merrier! 
 
-## ✨ Features
-
-Though young (just about 5 days old!), Silly Bot already has some tricks up its sleeve. Check out our star command:
-
-### 🛡️ Ban Command
-<div align="center">
-    <img src="https://cdn.discordapp.com/attachments/1124562179635556362/1363840323393949868/B26A2E86-CCA1-4404-BACE-0063EF22C55E.png?ex=68077ec8&is=68062d48&hm=e739bce753b92547d3c7a13ad8b5ebfa76eed9c5e103125da8b22f5438e95a8e&" alt="Ban Command">
-</div>
-
-### 💡 Help Command
-<div align="center">
-    <img src="https://cdn.discordapp.com/attachments/1124562179635556362/1363877689336791120/3C060A18-9628-4EF4-934A-0EFB688E8A06.png?ex=6807a194&is=68065014&hm=878d562a62aaaf52103d2f1a8058540fc22c7b7090f27c6e635d0c3887fea101&" alt="Help Command">
-</div>
 
 ## 📜 Copyright & Disclaimer
 
