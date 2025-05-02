@@ -231,18 +231,14 @@ I just got an **error** and I don't even *meow* what **actually it is**...
     @BetterCommand(
         name="meow",
         description="Meow meow meow meo meow meow meow~ 🐾",
-        brief="Meow meow meow meow!",
-        help=f"""Meow meow meo meow, meow meow meow meow meow meo meow~ {Emojis.random()}
-Meow meo meo meow meow meo, meow meow meow meo meow {Emojis.random()}
-Meow! Meow meow meow meow, meow meow meow~ {Emojis.random()}""",
+        brief="Meow meow meow **meow**!",
+        help=f"""Meow meow **meo meow**, meow meow meow **meow meow meo meow~** 
+Meow meo meo meow meow meo, meow meow meow **meo meow** 
+Meow! Meow __meow meow meow__, meow meow meow~""",
         usage=f"""Meow meo meo meow meow meow:
-
-```
-{PREFIX}meow
-```
+```{PREFIX}meow```
 Meow meo meow meo meo! {Emojis.random()}
 """,
-        aliases=["meowmeowmeow"],
     )
     async def meow(self, ctx: commands.Context):
         embed = discord.Embed(
@@ -283,30 +279,23 @@ Meow meow *meo meow meow meo*, meow meow! {Emojis.random(10)}
         await ctx.send(embed=embed)
 
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
-    #                                              >random                                             #
+    #                                              >howlove                                            #
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
     @BetterCommand(
         name="howlove",
         description="Check how much some one love silly cats is",
         brief="Check how much some one love **_silly_ cats**",
-        help=f"""Sometimes you might notice your **friends** don't like **silly cats** {Emojis.CatScare},
-or maybe you just want to know how much **you** or **your friends** love **silly cats** {Emojis.Doobis}
+        help=f"""Check **silly cat love** for **You** or **Your Friends**.
 
-**This is the best command you can find to measure that love**!
+Based on the **factors** we look for, I will give you the **best result**!
 
 -# :warning: Please note that this command is not 100% accurate, so **don't let it ruin your friendships** {Emojis.UIA_Spinning}""",
         usage=f"""*Sniff sniff sniff...*, looks like you're **intrigued** by this command!? {Emojis.Snifff}
 Here's how to use it with **pretty colors** - **super easy to use** {Emojis.CatSmile}
 
-{HelpFormat(f"{PREFIX}howlove", Optional=["@member"])}
-
-And here are some examples of how to use it:
-- `{PREFIX}howlove` 
-  - Check **your own** love for silly cats
-- `{PREFIX}howlove @friend` 
-  - Check how much **your friend** loves silly cats
-
--# Pro tip: You can use this command to find fellow **cat lovers**!~ 🐱""",
+{HelpFormat(f"{PREFIX}howlove", Optional={
+    "@member": "@Mention your friend! (or leave it blank to check yourself)"
+})}""",
     )
     async def howlove(
         self,
@@ -315,7 +304,7 @@ And here are some examples of how to use it:
         ephemeral: bool = False,
     ):
         """
-        Calculate how much a member loves cats.
+        Calculate how much a member loves cats with fun animations and messages.
 
         Args:
             ctx (commands.Context): The context of the command.
@@ -327,12 +316,15 @@ And here are some examples of how to use it:
 
         if member == ctx.guild.me:
             embed = discord.Embed(
-                description=f"""# {self.Emojis.random()} Meow meow meo...
-## You don't need to check me, I'm already a cat lover!
--# I love cats so much! <3""",
-                color=discord.Color.red(),
+                description=f"""# {self.Emojis.random(3)} Nyaa~! Of course I love cats! 
+## I AM a cat after all! {self.Emojis.CatSmile}
+### My love for cats is... 
+# ∞% Infinite! {self.Emojis.CatHeart}
+
+-# *Silly question... I'm the silliest cat lover there is!* {self.Emojis.JustWokeUp}""",
+                color=discord.Color.from_rgb(255, 105, 180),  # Hot pink!
             )
-            embed.set_footer(text=f"Meow meow meo~, I love you more than you know!")
+            embed.set_footer(text=f"Purring with infinite love! 🎵✨")
             embed.set_thumbnail(
                 url=(
                     member.avatar.url
@@ -341,19 +333,16 @@ And here are some examples of how to use it:
                 )
             )
             embed.set_image(
-                url="https://cdn.discordapp.com/attachments/1252365615281340498/1305546137427640320/togif.gif?ex=680af957&is=6809a7d7&hm=b9b078b340a3da54037c0c715505a092d6b6dd9eadd7d907018f1f693e9263b3&"
+                url="https://cdn.discordapp.com/attachments/1252365615281340498/1305546137427640320/togif.gif"
             )
             await ctx.send(embed=embed, ephemeral=ephemeral)
             return
 
         embed = discord.Embed(
-            title=f"",
-            description=f"""# {self.Emojis.random()} Calculating Love for Silly Cats
-## Let me check how much **{member.display_name}** loves cats...""",
-            color=discord.Color.darker_gray(),
-        )
-        embed.set_footer(
-            text=f"Well well well, I'm not sure if this is correct, but I'll try my best!"
+            description=f"""# {self.Emojis.random(2)} Cat Love Analysis in Progress...
+## Scanning **{member.display_name}**'s Cat Appreciation Level...
+### *Please wait while I sniff around...* {self.Emojis.Snifff}""",
+            color=discord.Color.blurple(),
         )
         embed.set_thumbnail(
             url=(
@@ -362,60 +351,97 @@ And here are some examples of how to use it:
                 else "https://c.tenor.com/62O0lwQIiwwAAAAd/tenor.gif"
             )
         )
-        # embed.set_image(url="https://cdn.discordapp.com/attachments/1252365615281340498/1305546137427640320/togif.gif?ex=680af957&is=6809a7d7&hm=b9b078b340a3da54037c0c715505a092d6b6dd9eadd7d907018f1f693e9263b3&")
         msg = await ctx.send(embed=embed, ephemeral=ephemeral)
 
-        steps = [
-            self.Emojis.random()
-            + "** Analyzing whisker twitches and purr frequencies...**",
-            self.Emojis.random() + "** Calculating ratio of cat pics to selfies...**",
-            self.Emojis.random()
-            + "** Measuring time spent watching cat videos vs sleeping...**",
-            self.Emojis.random() + "** Detecting traces of catnip in bloodstream...**",
-            self.Emojis.random() + "** Cross-referencing cat meme sharing history...**",
-            self.Emojis.random() + "** Evaluating response to 'pspspsps'...**",
+        analysis_steps = [
+            (
+                f"{self.Emojis.random()} **Analyzing whisker sensitivity...**",
+                "🔍 *sniff sniff*",
+            ),
+            (
+                f"{self.Emojis.random()} **Measuring purr recognition ability...**",
+                "📊 *processing meows*",
+            ),
+            (
+                f"{self.Emojis.random()} **Checking cat treat inventory...**",
+                "🐟 *counting fishies*",
+            ),
+            (
+                f"{self.Emojis.random()} **Evaluating scritches technique...**",
+                "✨ *analyzing pat patterns*",
+            ),
+            (
+                f"{self.Emojis.random()} **Calculating cat video watch time...**",
+                "📱 *reviewing history*",
+            ),
+            (
+                f"{self.Emojis.random()} **Testing 'pspspsps' response...**",
+                "👂 *listening carefully*",
+            ),
         ]
 
-        for step in steps:
-            await asyncio.sleep(rd.randint(1, 4))
-            embed.description = f"""# {self.Emojis.random()} Calculating Love for Silly Cats      
-## {step}"""
+        for step, subtitle in analysis_steps:
+            await asyncio.sleep(rd.uniform(0.8, 2.0))
+            embed.description = f"""# {self.Emojis.random()} Processing...
+## {step}
+### {subtitle}"""
             await msg.edit(embed=embed)
 
-        await asyncio.sleep(2)
         love_percent = rd.randint(0, 100)
 
-        # Determine love level and message
-        if love_percent >= 80:
-            level = "Ultimate Cat Lover! 😻"
-            color = discord.Color.red()
-            image_url = "https://cdn.discordapp.com/attachments/1252365615281340498/1305546137427640320/togif.gif?ex=680af957&is=6809a7d7&hm=b9b078b340a3da54037c0c715505a092d6b6dd9eadd7d907018f1f693e9263b3&"
-        elif love_percent >= 60:
-            level = "Cat Enthusiast! 😺"
-            color = discord.Color.blue()
-            image_url = "https://media.discordapp.net/attachments/964858064119431268/1096198713350836275/C02ECC68-ACE2-4293-8992-BE67B45E6378.gif?ex=680cb3db&is=680b625b&hm=831e97cd3c9671e72585e38934a8936dd34d07bad09e2c2f20513881c88df686&"
-        elif love_percent >= 40:
-            level = "Cat Friend 🐱"
-            color = discord.Color.green()
-            image_url = "https://cdn.discordapp.com/attachments/807809192537882647/1324147171636940830/Screenshot_2024-09-16_203032.gif?ex=680cb9e7&is=680b6867&hm=2e551936099c5432a3b94e68af64a134095a7094b946695652dbb02802a197ee&"
-        else:
-            level = "Still Learning to Love Cats 😿"
-            color = discord.Color.dark_gray()
-            image_url = "https://cdn.discordapp.com/attachments/1152219170725974036/1344559323518599241/convert.gif?ex=680c7f73&is=680b2df3&hm=d6eadf0109b963648a7b565f287fc4e4051ebd83875a1fe864ad927c347a5fd1&"
+        love_levels = {
+            (90, 100): (
+                "Legendary Cat Whisperer! 👑",
+                discord.Color.gold(),
+                "https://cdn.discordapp.com/attachments/1252365615281340498/1305546137427640320/togif.gif",
+            ),
+            (70, 89): (
+                "Certified Cat Enthusiast! 😻",
+                discord.Color.purple(),
+                "https://media.discordapp.net/attachments/964858064119431268/1096198713350836275/C02ECC68-ACE2-4293-8992-BE67B45E6378.gif",
+            ),
+            (50, 69): (
+                "Aspiring Cat Friend! 😺",
+                discord.Color.blue(),
+                "https://cdn.discordapp.com/attachments/807809192537882647/1324147171636940830/Screenshot_2024-09-16_203032.gif",
+            ),
+            (30, 49): (
+                "Cat Apprentice 🐱",
+                discord.Color.green(),
+                "https://cdn.discordapp.com/attachments/1152219170725974036/1344559323518599241/convert.gif",
+            ),
+            (0, 29): (
+                "Needs More Cat Time 😿",
+                discord.Color.dark_gray(),
+                "https://cdn.discordapp.com/attachments/1152219170725974036/1344559323518599241/convert.gif",
+            ),
+        }
 
-        hearts = "❤️" * (love_percent // 10)
-        empty_hearts = "🖤" * ((100 - love_percent) // 10)
+        for (min_val, max_val), (level, color, image) in love_levels.items():
+            if min_val <= love_percent <= max_val:
+                break
 
-        embed.set_image(url=image_url)
+        love_meter = ""
+        for i in range(10):
+            if i < love_percent // 10:
+                love_meter += "❤️"
+            else:
+                love_meter += "🖤"
+
         embed.color = color
-        embed.description = f"""# {self.Emojis.random()} Love Calculator Results
-### __Level__: {level}
-{self.Emojis.random(love_percent // 10)}
+        embed.set_image(url=image)
+        embed.description = f"""# {self.Emojis.random(3)} Cat Love Analysis Complete!
+## {member.name}'s Cat Love Level: **{love_percent}%**
+### {level}
 
-### __Result__:  **{member.name}**'s Love for Cats: **{love_percent}%**
-{hearts}{empty_hearts}
+{love_meter}
 
--# *The more you love cats, the more they love you back!* {self.Emojis.random()}"""
+{self.Emojis.random()} **Special Notes:**
+- Treats given to cats: *Many!*
+- Cat video expertise: *{rd.choice(['Novice', 'Advanced', 'Master', 'Legend'])}*
+- Purr recognition: *{rd.choice(['Getting there!', 'Excellent!', 'Outstanding!'])}*
+
+-# *Remember: Every cat lover started somewhere!* {self.Emojis.CatSmile}"""
 
         await msg.edit(embed=embed)
 

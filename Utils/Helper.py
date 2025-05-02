@@ -1,11 +1,12 @@
 import inspect
 import logging
-from typing import Any, List
+from typing import List, Dict
 
 from discord.ext import commands
 from configparser import ConfigParser
 from discord import Emoji
 import random as rd
+from Utils.Globals import PERMISSION_DESCRIPTIONS
 
 logger = logging.getLogger("Silly")
 
@@ -70,12 +71,12 @@ class Emojis_Class:
         return self + " " * other
 
 
-def get_required_permissions(command: commands.Command) -> List[str]:
+def get_required_permissions(command: commands.Command) -> Dict[str, str]:
     """
     Extracts required permissions from a command's checks (specifically for @has_permissions).
-    Returns a list of permission names as strings.
+    Returns a dictionary of permission names as keys and their descriptions as values.
     """
-    required_permissions = []
+    required_permissions = {}
 
     for check in command.checks:
         # if it's a decorator like @commands.has_permissions
@@ -84,9 +85,12 @@ def get_required_permissions(command: commands.Command) -> List[str]:
                 closure_vars = inspect.getclosurevars(check)
                 perms = closure_vars.nonlocals.get("perms")
                 if isinstance(perms, dict):
-                    required_permissions.extend(
-                        [perm for perm, value in perms.items() if value]
-                    )
+                    for perm, value in perms.items():
+                        if value:
+                            required_permissions[perm] = PERMISSION_DESCRIPTIONS.get(
+                                perm
+                            )
+
             except Exception as e:
                 logger.warning(
                     f"Error getting required permissions for command {command.name}: {e}"

@@ -25,14 +25,14 @@ class Help(commands.HelpCommand):
     """def get_command_signature(self, command):
         return f"{self.Helpers.Prefix}{command.qualified_name} {command.signature}"""
 
-    async def smart_send(self, ctx, *args, **kwargs):
+    async def smart_send(self, ctx, *args, **kwargs) -> discord.Message:
         if isinstance(ctx, discord.Interaction):
             if not ctx.response.is_done():
-                await ctx.response.send_message(*args, **kwargs)
+                return await ctx.response.send_message(*args, **kwargs)
             else:
-                await ctx.followup.send(*args, **kwargs)
+                return await ctx.followup.send(*args, **kwargs)
         elif hasattr(ctx, "send"):
-            await ctx.send(*args, **kwargs)
+            return await ctx.send(*args, **kwargs)
         else:
             # logger.error(f"Invalid context type: {type(ctx)}")
             raise TypeError(f"ctx must be Context or Interaction, got {type(ctx)}")
@@ -49,7 +49,7 @@ class Help(commands.HelpCommand):
         # logger.debug(f"ctx: {ctx}")
         embed = discord.Embed(
             description=f"""# {self.Emojis.random()} ・ Meo Help Center
-Welcome to **Silly's** help menu! I'm here to assist you with all your **_silly_ needs.**
+Welcome to **Silly's** help menu! I'm here to assist you with all your **_silly_ needs.** {self.Emojis.CatSmile}
 
 -# Use `{PREFIX}help [command]` or `/help [command]` for detailed help on a **specific command**.
 -# Use `{PREFIX}help [category]` or `/help [category]` to see **all commands in a category**.""",
@@ -169,6 +169,8 @@ Welcome to **Silly's** help menu! I'm here to assist you with all your **_silly_
         )
         view.message = message
 
+        return message
+
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
     #                                          >help COMMAND                                           #
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
@@ -176,42 +178,60 @@ Welcome to **Silly's** help menu! I'm here to assist you with all your **_silly_
         self, command: commands.Command, ephemeral: bool = False
     ):
         ctx = self.context
+        required_permissions = get_required_permissions(command)
 
         embed = discord.Embed(
-            description=f"""# {self.Emojis.random()} ・ Welcome to Silly's Help Center! 
-I'm here to assist you with all your **_silly_ needs**! {self.Emojis.CatSmile}""",
+            title=f"{command.cog.Emoji} {command.cog_name}  ›  `{command.name}` {ctx.bot.slash_commands.get(command.name, '')}",
             color=discord.Color.brand_green(),
         )
 
-        # Command Info Section
-        info_section = f"""\n## {self.Emojis.random(filter_emoji=command.cog.Emoji)} Command Information
-**Category**: {command.cog.Emoji} __{command.cog_name or 'Other'}__
-**Command**: `{command.name}`"""
-        embed.description += info_section
-
-        desc_section = f"""\n## {self.Emojis.random()} Description
-{command.help}"""
-        embed.description += desc_section
-
-        usage_section = f"""\n## {self.Emojis.random()} How to Use
-{command.usage}"""
-        embed.description += usage_section
-
-        # Aliases Section
-        if command.aliases:
-            aliases = ", ".join(f"`{alias}`" for alias in command.aliases)
-            alias_section = f"""\n## {self.Emojis.random()} Alternative Names
-{aliases}"""
-            embed.description += alias_section
-
-        # Visual Elements
-        embed.set_thumbnail(
-            url=(
-                ctx.author.avatar.url
-                if ctx.author.avatar
-                else "https://c.tenor.com/KO80NCIjQAUAAAAd/tenor.gif"
-            )
+        embed.add_field(
+            name=f"{self.Emojis.ICONInformation} __INTRODUCTION__",
+            value=command.help,
+            inline=False,
         )
+
+        embed.add_field(
+            name=f"{self.Emojis.ICONPixelQuestion} __HOW TO USE__",
+            value=command.usage,
+            inline=False,
+        )
+
+        if required_permissions:
+            required_permissions_str = "\n".join(
+                f"**{perm}**: {desc}" for perm, desc in required_permissions.items()
+            )
+
+            embed.add_field(
+                name=f"{self.Emojis.ICONStar} __REQUIRED PERMISSIONS__",
+                value=required_permissions_str,
+                inline=False,
+            )
+
+        if command.aliases:
+            if len(command.aliases) == 1:
+                aliases_str = f"`{command.aliases[0]}`"
+            else:
+                aliases_str = ", ".join(f"`{alias}`" for alias in command.aliases[:-1])
+                aliases_str += f" and `{command.aliases[-1]}`"
+
+            embed.add_field(
+                name=(
+                    f"{self.Emojis.ICONLink} __ALTERNATIVE NAMES__"
+                    if len(command.aliases) > 1
+                    else f"{self.Emojis.ICONLink} __ALTERNATIVE NAME__"
+                ),
+                value=f"-# This command also has these alternative name(s):\n{aliases_str}",
+                inline=False,
+            )
+
+        # embed.set_thumbnail(
+        #     url=(
+        #         ctx.author.avatar.url
+        #         if ctx.author.avatar
+        #         else "https://c.tenor.com/KO80NCIjQAUAAAAd/tenor.gif"
+        #     )
+        # )
         embed.set_image(
             url="https://cdn.discordapp.com/attachments/1124562179635556362/1362386665569779803/Silly_6.gif?ex=680234f4&is=6800e374&hm=c82b1ace8d364a1b641a17f1b7b08b548e566af3f38e3c8f537464d44e82db3d&"
         )
@@ -227,8 +247,6 @@ I'm here to assist you with all your **_silly_ needs**! {self.Emojis.CatSmile}""
             description=f"""# {self.Emojis.random()} ・ Meo Help Center
 Welcome to **Silly's** help menu! I'm here to assist you with all your **_silly_ needs.**
 
--# Use `{PREFIX}help [command]` or `/help [command]` for detailed help on a **specific command**.
--# Use `{PREFIX}help` or `/help` to see all **categories and commands**.
 # {group.Emoji} __{group.qualified_name}__
 """,
             color=discord.Color.green(),
@@ -446,7 +464,18 @@ Oh! I know! Let me show you how to use these commands with Usage!
 
 (=^･ω･^=) I'll show you all about my health and status!""",
         usage=f"""Meowkay, you can use this with this guide:
-{HelpFormat("debug", Optional=["guild", "author"])}
+{HelpFormat("debug", Optional={
+    "guild": {
+        "": "Show guild information",
+        "True": "Yes",
+        "False": "No"
+    },
+    "author": {
+        "": "Show author information",
+        "True": "Yes",
+        "False": "No"
+    }
+})}
 
 -# Or just use `{PREFIX}debug` or `/debug` to view **my status**""",
         aliases=["areyouok"],
